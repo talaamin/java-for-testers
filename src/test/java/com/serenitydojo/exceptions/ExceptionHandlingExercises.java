@@ -29,6 +29,7 @@ public class ExceptionHandlingExercises {
      * Exercise 2 - Catching exceptions
      * Update the fileContainsText() method in the FileLoader class so that it returns false if the file
      * does not contain the excepted text, or if the file does not exist.
+     * @throws IOException 
      */
     @Test
     public void catchingExceptions() {
