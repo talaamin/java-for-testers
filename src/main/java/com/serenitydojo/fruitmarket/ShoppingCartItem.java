@@ -21,5 +21,6 @@ public class ShoppingCartItem {
 
     public Double getTotalCost() {
         return totalCost;
+     
     }
 }
