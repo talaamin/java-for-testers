@@ -8,11 +8,21 @@ import java.util.stream.Collectors;
 public class Catalog {
 
     private Map<Fruit, Double> pricePerKilo = new HashMap<>();
-
-    public PriceSetter setPriceOf(Fruit fruit) {
-        return new PriceSetter(this, fruit);
+    
+    
+    public void addFruit(Fruit fruit,double cost) {
+    	pricePerKilo.put(fruit, cost);
+    	
     }
     
+    public double costOf(Fruit fruit) {
+    	if(!pricePerKilo.containsKey(fruit)) {
+    		throw new FruitUnavailableException(fruit.name()+"currently unavailable");
+    	}
+    	return pricePerKilo.get(fruit);
+    }
+
+
     public List<String> getAvailableFruit() {
         return pricePerKilo.keySet()
                 .stream()
@@ -21,13 +31,7 @@ public class Catalog {
                 .collect(Collectors.toList());
     }
 
-    public Double getPriceOf(Fruit fruit) {
-    	 if (pricePerKilo.containsKey(fruit)) {
-             return pricePerKilo.get(fruit);
-         }
-         throw new FruitUnavailableException(fruit.name() + " currently unavailable");
-    }
-    
+
 
     public static class PriceSetter {
         private final Catalog catalog;

@@ -11,16 +11,7 @@ public class TheShoppingCart {
 	Catalog catalog;
     ShoppingCart cart;
 
-    @Before
-    public void setupCatalog() {
-        catalog = new Catalog();
-        catalog.setPriceOf(Apple).to(4.00)
-                .setPriceOf(Orange).to(5.50)
-                .setPriceOf(Banana).to(4.50)
-                .setPriceOf(Pear).to(4.50);
 
-        cart = new ShoppingCart(catalog);
-    }
 
     @Test
     public void shouldStartWithNoItems() {
@@ -38,8 +29,10 @@ public class TheShoppingCart {
     @Test
     public void shouldUseTheCatalogToCalculateThePriceOfItemsAddedToTheCart() {
         cart.add(2.0).kilosOf(Apple)
-                .add(2.0).kilosOf(Orange)
-                .add(1.0).kilosOf(Pear);
+             .add(2.0).kilosOf(Orange)
+             .add(1.0).kilosOf(Pear);
+        
+        
 
         assertThat(cart.getTotalPrice()).isEqualTo(23.50);
     }

@@ -12,35 +12,30 @@ import org.junit.Test;
 
 public class TheCatalog {
 
-    @Before
-    public void createANewCatalog() {
-       Catalog catalog = new Catalog();
-        catalog.setPriceOf(Apple).to(4.00)
-                .setPriceOf(Orange).to(5.50)
-                .setPriceOf(Banana).to(4.50)
-                .setPriceOf(Pear).to(4.50);
-    }
+
 
     @Test
     public void shouldBeAbleToUpdateTheCurrentPriceOfAFruit() {
         Catalog catalog = new Catalog();
 
-        catalog.setPriceOf(Apple).to(4.00);
-        assertThat(catalog.getPriceOf(Apple)).isEqualTo(4.00);
+        catalog.addFruit(Apple, 4.00);         
+        catalog.addFruit(Banana, 6.00);
+        catalog.addFruit(Pear, 4.50);
+        catalog.addFruit(Orange, 5.50);
+        assertThat(catalog.costOf(Apple)).isEqualTo(4.00);
+        assertThat(catalog.costOf(Banana)).isEqualTo(6.00);
+        assertThat(catalog.costOf(Pear)).isEqualTo(4.50);
+        assertThat(catalog.costOf(Orange)).isEqualTo(5.50);
         
-        catalog.setPriceOf(Banana).to(6.00);
-        assertThat(catalog.getPriceOf(Banana)).isEqualTo(6.00);
-        
-        catalog.setPriceOf(Orange).to(5.50);
-        assertThat(catalog.getPriceOf(Orange)).isEqualTo(5.50);
-        
-        catalog.setPriceOf(Pear).to(4.50);
-        assertThat(catalog.getPriceOf(Pear)).isEqualTo(4.50);       
     }
     
     @Test
     public void shouldBeAbleToListFruitInAlphabeticalOrder() {
     	Catalog catalog = new Catalog();
+    	 catalog.addFruit(Apple, 4.00);         
+         catalog.addFruit(Banana, 6.00);
+         catalog.addFruit(Pear, 4.50);
+         catalog.addFruit(Orange, 5.50);
     	 assertThat(catalog.getAvailableFruit()).containsExactly("Apple", "Banana", "Orange","Pear");
     	   	
     }
@@ -49,8 +44,9 @@ public class TheCatalog {
     @Test(expected = FruitUnavailableException.class)
     public void shouldThrowFruitUnavailableException() {
     	Catalog catalog = new Catalog();
-    	catalog.getPriceOf(Strawberries);
-    	
-    	
+    	catalog.addFruit(Apple, 4.00); 
+    	catalog.costOf(Strawberries);
+    	  	
     }
+    
 }

@@ -11,7 +11,13 @@ public class ShoppingCartItem {
         this.totalCost = totalCost;
     }
 
-    public Fruit getFruit() {
+    public ShoppingCartItem(Fruit  fruit, Double quantity) {
+    	this.fruit = fruit;
+    	this.quantity = quantity;
+		// TODO Auto-generated constructor stub
+	}
+
+	public Fruit getFruit() {
         return fruit;
     }
 
